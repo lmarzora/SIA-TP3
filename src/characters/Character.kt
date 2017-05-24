@@ -2,13 +2,14 @@ package characters
 
 import gear.Gear
 import java.lang.Math.pow
+import java.lang.Math.tanh
 
 abstract class Character(var height: Double, var gear: MutableMap<String, Gear>) {
-    val strength = gear.values.sumByDouble(Gear::strength)
-    val dexterity = gear.values.sumByDouble(Gear::dexterity)
-    val expertise = gear.values.sumByDouble(Gear::expertise)
-    val resistance = gear.values.sumByDouble(Gear::resistance)
-    val life = gear.values.sumByDouble(Gear::life)
+    val strength = 100*tanh(0.01*gear.values.sumByDouble(Gear::strength))
+    val dexterity = tanh(0.01*gear.values.sumByDouble(Gear::dexterity))
+    val expertise = 0.6*tanh(0.01*gear.values.sumByDouble(Gear::expertise))
+    val resistance = tanh(0.01*gear.values.sumByDouble(Gear::resistance))
+    val life = 100*tanh(0.01*gear.values.sumByDouble(Gear::life))
     
     val atm = .5 - pow((3*height-5),4.0) + pow((3*height - 5),2.0) -height/2
     val dem = 2 + pow((3*height-5),4.0) - pow((3*height - 5),2.0) -height/2
