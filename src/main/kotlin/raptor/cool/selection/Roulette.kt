@@ -8,14 +8,16 @@ class Roulette : Selector{
     override fun select(characters: Collection<Character>, k: Int): Collection<Character> {
         var accumulatedFitness: MutableMap<Double, Character> = mutableMapOf()
         var accum = 0.0
+        var totalfitness = characters.sumByDouble(Character::getFitness)
         for (c: Character in characters) {
-            accum += c.getFitness()
+            accum += c.getFitness()/totalfitness
             accumulatedFitness.put(accum,c)
         }
 
         var rand = (1..k).map { random() }
 
         var selected: List<Character?> = emptyList()
+
         for (r in rand) {
             selected+= accumulatedFitness[accumulatedFitness.keys.last { a -> r <= a }]
         }

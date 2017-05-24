@@ -1,12 +1,50 @@
+import characters.Character
 import characters.Warrior
 import gear.Gear
+import selection.Elite
+import java.util.*
 
 fun main(args: Array<String>) {
+	testSelection()
+}
 
-	val plateArmor = Gear(1, 5.0, 5.0, 5.0, 5.0, 50.0)
-	val sword = Gear(2, strength = 20.0, dexterity = 1.0, expertise = 1.0, resistance = 1.0, life = 0.0)
-	var warrior = Warrior(1.5, mutableMapOf("armor" to plateArmor, "weapon" to sword))
+fun testSelection() {
+	var armor = emptyList<Gear>()
+	for (i in 1..10) {
+		armor += Gear(i, Math.random(), Math.random(), Math.random(), Math.random(), Math.random())
+	}
+	var weapons = emptyList<Gear>()
+	for (i in 11..20) {
+		weapons += Gear(i, Math.random(), Math.random(), Math.random(), Math.random(), Math.random())
+	}
+	var helms = emptyList<Gear>()
+	for (i in 21..30) {
+		helms += Gear(i, Math.random(), Math.random(), Math.random(), Math.random(), Math.random())
+	}
+	var shields = emptyList<Gear>()
+	for (i in 31..40) {
+		shields += Gear(i, Math.random(), Math.random(), Math.random(), Math.random(), Math.random())
+	}
+	var boots = emptyList<Gear>()
+	for (i in 41..50) {
+		boots += Gear(i, Math.random(), Math.random(), Math.random(), Math.random(), Math.random())
+	}
 
-	println("Amazing Fitness of ${warrior.getFitness()}")
+	var characters = emptyList<Character>()
+	var rand = Random()
+	for (i in 1..10) {
+		characters += Warrior((1.5 + Math.random()) * .5, mutableMapOf(
+				"armor" to armor[rand.nextInt(armor.size)],
+				"weapons" to weapons[rand.nextInt(weapons.size)],
+				"helms" to helms[rand.nextInt(helms.size)],
+				"shields" to shields[rand.nextInt(shields.size)],
+				"boots" to boots[rand.nextInt(boots.size)]))
+	}
+
+//	characters.forEach { c -> print(c.toString() + " " + c.getFitness() + "\n")}
+
+	var rouletteSelector = Elite()
+
+	rouletteSelector.select(characters, 2).forEach { c -> println(c) }
 
 }

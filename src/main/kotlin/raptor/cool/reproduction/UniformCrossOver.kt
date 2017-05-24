@@ -15,7 +15,7 @@ class UniformCrossOver(val probability: Double = 0.5) : Reproductor {
         val chromosome1 = character1.getGearChromosome()
         val chromosome2 = character2.getGearChromosome()
         val L = chromosome1.size
-        
+
 
         throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
     }

@@ -11,7 +11,7 @@ class Ranking : Selector{
         val probs = (1..characters.size).map{i -> (1.0*i)/ranking.size}
 
         var accum = 0.0
-        for (i in 1..ranking.size) {
+        for (i in 1..ranking.size-1) {
             accum += probs[i]
             accumProbs.put(accum,competitors[i])
         }
