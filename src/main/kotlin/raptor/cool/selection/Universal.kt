@@ -16,9 +16,9 @@ class Universal : Selector{
         val seed = Math.random()
         var rand = (1..k).map { j -> (seed + j -1) / k}
 
-        var selected: List<Character?> = emptyList()
+        var selected = mutableListOf<Character?>()
         for (r in rand) {
-            selected+= accumulatedFitness[accumulatedFitness.keys.last { a -> r <= a }]
+            selected.add(accumulatedFitness[accumulatedFitness.keys.last { a -> r <= a }])
         }
         return selected.filterNotNull()
     }

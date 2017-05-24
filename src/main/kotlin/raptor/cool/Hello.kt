@@ -1,6 +1,10 @@
 import characters.Character
 import characters.Warrior
 import gear.Gear
+import raptor.cool.selection.DeterministicTournament
+import raptor.cool.selection.Roulette
+import raptor.cool.selection.StochasticTournament
+import raptor.cool.selection.Universal
 import selection.Elite
 import java.util.*
 
@@ -43,7 +47,7 @@ fun testSelection() {
 
 //	characters.forEach { c -> print(c.toString() + " " + c.getFitness() + "\n")}
 
-	var rouletteSelector = Elite()
+	var rouletteSelector = Universal()
 
 	rouletteSelector.select(characters, 2).forEach { c -> println(c) }
 

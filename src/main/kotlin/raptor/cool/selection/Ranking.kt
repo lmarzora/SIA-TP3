@@ -17,9 +17,9 @@ class Ranking : Selector{
         }
         var rand = (1..k).map { Math.random() }
 
-        var selected: List<Character?> = emptyList()
+        var selected: MutableList<Character?> = mutableListOf()
         for (r in rand) {
-            selected+= accumProbs[accumProbs.keys.last { a -> r <= a }]
+            selected.add(accumProbs[accumProbs.keys.last { a -> r <= a }])
         }
         return selected.filterNotNull()
 

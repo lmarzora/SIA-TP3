@@ -16,10 +16,10 @@ class Roulette : Selector{
 
         var rand = (1..k).map { random() }
 
-        var selected: List<Character?> = emptyList()
+        var selected = mutableListOf<Character?>()
 
         for (r in rand) {
-            selected+= accumulatedFitness[accumulatedFitness.keys.last { a -> r <= a }]
+            selected.add(accumulatedFitness[accumulatedFitness.keys.last { a -> r <= a }])
         }
         return selected.filterNotNull()
     }
