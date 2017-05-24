@@ -4,7 +4,7 @@ import gear.Gear
 import java.lang.Math.pow
 import java.lang.Math.tanh
 
-abstract class Character(var height: Double, var gear: MutableMap<String, Gear>) {
+abstract class Character(val height: Double, val gear: MutableMap<String, Gear>) {
     val strength = 100*tanh(0.01*gear.values.sumByDouble(Gear::strength))
     val dexterity = tanh(0.01*gear.values.sumByDouble(Gear::dexterity))
     val expertise = 0.6*tanh(0.01*gear.values.sumByDouble(Gear::expertise))
@@ -18,9 +18,11 @@ abstract class Character(var height: Double, var gear: MutableMap<String, Gear>)
     val defence = if ((resistance + expertise) * life * dem <= 0) (resistance + expertise) * life * dem else 0.0
 
     abstract fun getFitness(): Double
+
     override fun toString(): String {
         return "Character(height=$height, gear=$gear, strength=$strength, dexterity=$dexterity, expertise=$expertise, resistance=$resistance, life=$life, atm=$atm, dem=$dem, attack=$attack, defence=$defence)"
     }
 
+    abstract fun getHeir(height: Double, gear: MutableMap<String, Gear>): Character
 
 }

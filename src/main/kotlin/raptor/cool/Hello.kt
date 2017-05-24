@@ -1,14 +1,11 @@
 import characters.Character
 import characters.Warrior
 import gear.Gear
-import raptor.cool.selection.*
 import selection.Elite
 import java.util.*
 
 fun main(args: Array<String>) {
-
 	testSelection()
-
 }
 
 fun testSelection() {
