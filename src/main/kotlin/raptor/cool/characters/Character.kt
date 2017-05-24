@@ -14,8 +14,13 @@ abstract class Character(var height: Double, var gear: MutableMap<String, Gear>)
     val atm = .5 - pow((3*height-5),4.0) + pow((3*height - 5),2.0) -height/2
     val dem = 2 + pow((3*height-5),4.0) - pow((3*height - 5),2.0) -height/2
 
-    val attack = (dexterity + expertise) * strength * atm
-    val defence = (resistance + expertise) * life * dem
+    val attack = if((dexterity + expertise) * strength * atm <= 0) (dexterity + expertise) * strength * atm else 0.0
+    val defence = if ((resistance + expertise) * life * dem <= 0) (resistance + expertise) * life * dem else 0.0
 
     abstract fun getFitness(): Double
+    override fun toString(): String {
+        return "Character(height=$height, gear=$gear, strength=$strength, dexterity=$dexterity, expertise=$expertise, resistance=$resistance, life=$life, atm=$atm, dem=$dem, attack=$attack, defence=$defence)"
+    }
+
+
 }
