@@ -19,4 +19,14 @@ abstract class Character(val height: Double, val gear: MutableMap<String, Gear>)
 
     abstract fun getFitness(): Double
     abstract fun getHeir(height: Double, gear: MutableMap<String, Gear>): Character
+
+    fun getGearChromosome(): MutableList<Gear?> {
+        var gearChromosome : MutableList<Gear?> = mutableListOf()
+        gearChromosome.add(gear["weapon"])
+        gearChromosome.add(gear["boot"])
+        gearChromosome.add(gear["helmet"])
+        gearChromosome.add(gear["glove"])
+        gearChromosome.add(gear["armor"])
+        return gearChromosome
+    }
 }
