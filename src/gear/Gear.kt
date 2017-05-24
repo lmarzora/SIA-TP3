@@ -1,6 +1,5 @@
 package gear
 
-
 data class Gear(val strength: Double,
                 val dexterity: Double,
                 val expertise: Double,
