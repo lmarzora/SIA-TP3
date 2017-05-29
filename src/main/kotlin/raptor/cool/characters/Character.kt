@@ -34,4 +34,27 @@ abstract class Character(val height: Double, val gear: MutableMap<String, Gear>)
         gearChromosome.add(gear["armor"])
         return gearChromosome
     }
+
+    companion object {
+        fun getGearMap(list: MutableList<Gear?>): MutableMap<String, Gear> {
+            var mp = mutableMapOf<String, Gear>()
+            for (i in (0..(list.size - 1))) {
+                val g = list[i]
+                if (g != null)
+                    mp.put(whatGear(i), g)
+            }
+            return mp
+        }
+
+        private fun whatGear(n: Int): String {
+            when (n) {
+                0 -> return "weapon"
+                1 -> return "boot"
+                2 -> return "helmet"
+                3 -> return "glove"
+                4 -> return "armor"
+                else -> throw UnsupportedOperationException("Out Of Bounds.")
+            }
+        }
+    }
 }
