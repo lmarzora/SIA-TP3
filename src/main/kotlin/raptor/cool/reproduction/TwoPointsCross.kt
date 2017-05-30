@@ -1,11 +1,11 @@
 package raptor.cool.reproduction
 
-import characters.Character
-import gear.Gear
-import reproduction.Reproductor
+import raptor.cool.characters.Character
+import raptor.cool.characters.getGearMap
+import raptor.cool.gear.Gear
 import java.util.*
 
-class TwoPointsCross : Reproductor{
+class TwoPointsCross : Reproductor {
 
     override fun reproduce(character1: Character, character2: Character): Character {
         val rnd = Random()
@@ -23,6 +23,6 @@ class TwoPointsCross : Reproductor{
         }
         val h = if(r2 == 5) character2.height else character1.height
 
-        return character1.getHeir(h, Character.getGearMap(newGear)) //Asumption: both characters are from the same heir.
+        return character1.getHeir(h, getGearMap(newGear)) //Asumption: both characters are from the same heir.
     }
 }

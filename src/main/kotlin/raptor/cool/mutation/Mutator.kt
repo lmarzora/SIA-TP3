@@ -1,7 +1,7 @@
-package mutation
+package raptor.cool.mutation
 
-import characters.Character
+import raptor.cool.characters.Character
 
 interface Mutator {
-    fun mutate(characters: Collection<Character>): Collection<Character>
+    fun mutate(characters: Collection<Character>, p: Double): Collection<Character>
 }

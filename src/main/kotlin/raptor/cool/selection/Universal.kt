@@ -1,25 +1,21 @@
 package raptor.cool.selection
 
-import characters.Character
-import selection.Selector
+import raptor.cool.characters.Character
 
-class Universal : Selector{
+class Universal : Selector {
     override fun select(characters: Collection<Character>, k: Int): Collection<Character> {
-        var accumulatedFitness: MutableMap<Double, Character> = mutableMapOf()
+        val accumulatedFitness: MutableMap<Double, Character> = mutableMapOf()
         var accum = 0.0
-        var totalfitness = characters.sumByDouble(Character::getFitness)
+        val totalfitness = characters.sumByDouble(Character::getFitness)
         for (c: Character in characters) {
             accum += c.getFitness()/totalfitness
             accumulatedFitness.put(accum,c)
         }
 
         val seed = Math.random()
-        var rand = (1..k).map { j -> (seed + j -1) / k}
+        val rand = (1..k).map { j -> (seed + j - 1) / k }
 
-        var selected = mutableListOf<Character?>()
-        for (r in rand) {
-            selected.add(accumulatedFitness[accumulatedFitness.keys.last { a -> r <= a }])
-        }
+        val selected = rand.map { accumulatedFitness[accumulatedFitness.keys.last { a -> it <= a }] }
         return selected.filterNotNull()
     }
 }

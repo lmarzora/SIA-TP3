@@ -1,11 +1,7 @@
-import characters.Character
-import characters.Warrior
-import gear.Gear
-import raptor.cool.selection.DeterministicTournament
-import raptor.cool.selection.Roulette
-import raptor.cool.selection.StochasticTournament
+import raptor.cool.characters.Character
+import raptor.cool.characters.Warrior
+import raptor.cool.gear.Gear
 import raptor.cool.selection.Universal
-import selection.Elite
 import java.util.*
 
 fun main(args: Array<String>) {
@@ -35,7 +31,7 @@ fun testSelection() {
 	}
 
 	var characters = emptyList<Character>()
-	var rand = Random()
+	val rand = Random()
 	for (i in 1..10) {
 		characters += Warrior((1.5 + Math.random()) * .5, mutableMapOf(
 				"armor" to armor[rand.nextInt(armor.size)],
@@ -47,7 +43,7 @@ fun testSelection() {
 
 //	characters.forEach { c -> print(c.toString() + " " + c.getFitness() + "\n")}
 
-	var rouletteSelector = Universal()
+	val rouletteSelector = Universal()
 
 	rouletteSelector.select(characters, 2).forEach { c -> println(c) }
 

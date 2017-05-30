@@ -1,15 +1,15 @@
-package characters
+package raptor.cool.characters
 
-import gear.Gear
+import raptor.cool.gear.Gear
 import java.lang.Math.pow
 import java.lang.Math.tanh
 
 abstract class Character(val height: Double, val gear: MutableMap<String, Gear>) {
-    val strength = 100*tanh(0.01*gear.values.sumByDouble(Gear::strength))
-    val dexterity = tanh(0.01*gear.values.sumByDouble(Gear::dexterity))
-    val expertise = 0.6*tanh(0.01*gear.values.sumByDouble(Gear::expertise))
-    val resistance = tanh(0.01*gear.values.sumByDouble(Gear::resistance))
-    val life = 100*tanh(0.01*gear.values.sumByDouble(Gear::life))
+    val strength = 100 * tanh(0.01 * gear.values.sumByDouble(Gear::strength) * strengthMul)
+    val dexterity = tanh(0.01 * gear.values.sumByDouble(Gear::dexterity) * dexterityMul)
+    val expertise = 0.6 * tanh(0.01 * gear.values.sumByDouble(Gear::expertise) * expertiseMul)
+    val resistance = tanh(0.01 * gear.values.sumByDouble(Gear::resistance) * resistanceMul)
+    val life = 100 * tanh(0.01 * gear.values.sumByDouble(Gear::life) * lifeMul)
     
     val atm = .5 - pow((3*height-5),4.0) + pow((3*height - 5),2.0) -height/2
     val dem = 2 + pow((3*height-5),4.0) - pow((3*height - 5),2.0) -height/2
@@ -26,7 +26,7 @@ abstract class Character(val height: Double, val gear: MutableMap<String, Gear>)
     abstract fun getHeir(height: Double, gear: MutableMap<String, Gear>): Character
 
     fun getGearChromosome(): MutableList<Gear?> {
-        var gearChromosome : MutableList<Gear?> = mutableListOf()
+        val gearChromosome: MutableList<Gear?> = mutableListOf()
         gearChromosome.add(gear["weapon"])
         gearChromosome.add(gear["boot"])
         gearChromosome.add(gear["helmet"])
@@ -35,26 +35,33 @@ abstract class Character(val height: Double, val gear: MutableMap<String, Gear>)
         return gearChromosome
     }
 
-    companion object {
-        fun getGearMap(list: MutableList<Gear?>): MutableMap<String, Gear> {
-            var mp = mutableMapOf<String, Gear>()
-            for (i in (0..(list.size - 1))) {
-                val g = list[i]
-                if (g != null)
-                    mp.put(whatGear(i), g)
-            }
-            return mp
-        }
+    companion object Settings {
+        var strengthMul = 0.8
+        var dexterityMul = 0.9
+        var expertiseMul = 0.9
+        var resistanceMul = 1.2
+        var lifeMul = 1.1
+    }
 
-        private fun whatGear(n: Int): String {
-            when (n) {
-                0 -> return "weapon"
-                1 -> return "boot"
-                2 -> return "helmet"
-                3 -> return "glove"
-                4 -> return "armor"
-                else -> throw UnsupportedOperationException("Out Of Bounds.")
-            }
-        }
+}
+
+fun getGearMap(list: MutableList<Gear?>): MutableMap<String, Gear> {
+    val mp = mutableMapOf<String, Gear>()
+    for (i in (0..(list.size - 1))) {
+        val g = list[i]
+        if (g != null)
+            mp.put(whatGear(i), g)
+    }
+    return mp
+}
+
+private fun whatGear(n: Int): String {
+    when (n) {
+        0 -> return "weapon"
+        1 -> return "boot"
+        2 -> return "helmet"
+        3 -> return "glove"
+        4 -> return "armor"
+        else -> throw UnsupportedOperationException("Out Of Bounds.")
     }
 }

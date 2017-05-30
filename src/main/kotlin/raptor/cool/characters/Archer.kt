@@ -1,6 +1,6 @@
-package characters
+package raptor.cool.characters
 
-import gear.Gear
+import raptor.cool.gear.Gear
 
 class Archer(height: Double, gear: MutableMap<String, Gear>) : Character(height, gear) {
 

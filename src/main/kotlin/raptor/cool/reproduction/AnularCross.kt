@@ -1,8 +1,8 @@
 package raptor.cool.reproduction
 
-import characters.Character
-import gear.Gear
-import reproduction.Reproductor
+import raptor.cool.characters.Character
+import raptor.cool.characters.getGearMap
+import raptor.cool.gear.Gear
 
 
 class AnularCross(var locus: Int, var l: Int) : Reproductor {
@@ -20,6 +20,6 @@ class AnularCross(var locus: Int, var l: Int) : Reproductor {
         }
         val h = if(locus+l>=5) character1.height else character2.height
 
-        return character1.getHeir(h, Character.getGearMap(newGear)) //Asumption: both characters are from the same heir.
+        return character1.getHeir(h, getGearMap(newGear)) //Asumption: both characters are from the same heir.
     }
 }

@@ -1,6 +1,6 @@
-package selection
+package raptor.cool.selection
 
-import characters.Character
+import raptor.cool.characters.Character
 
 interface Selector {
     fun select(characters: Collection<Character>, k: Int): Collection<Character>

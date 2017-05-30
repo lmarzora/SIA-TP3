@@ -1,8 +1,8 @@
 package raptor.cool.reproduction
 
-import characters.Character
-import gear.Gear
-import reproduction.Reproductor
+import raptor.cool.characters.Character
+import raptor.cool.characters.getGearMap
+import raptor.cool.gear.Gear
 import java.util.*
 
 class OnePointCross : Reproductor {
@@ -21,6 +21,6 @@ class OnePointCross : Reproductor {
         }
         val h = if(locus!=6) character2.height else character1.height
 
-        return character1.getHeir(h, Character.getGearMap(newGear)) //Asumption: both characters are from the same heir.
+        return character1.getHeir(h, getGearMap(newGear)) //Asumption: both characters are from the same heir.
     }
 }

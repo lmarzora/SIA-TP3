@@ -1,9 +1,8 @@
 package raptor.cool.selection
 
-import characters.Character
-import selection.Selector
+import raptor.cool.characters.Character
 
-class Ranking : Selector{
+class Ranking : Selector {
     override fun select(characters: Collection<Character>, k: Int): Collection<Character> {
         val competitors = characters.toList()
         val ranking = competitors.sortedWith(compareByDescending(Character::getFitness))
@@ -15,12 +14,10 @@ class Ranking : Selector{
             accum += probs[i]
             accumProbs.put(accum,competitors[i])
         }
-        var rand = (1..k).map { Math.random() }
+        val rand = (1..k).map { Math.random() }
 
-        var selected: MutableList<Character?> = mutableListOf()
-        for (r in rand) {
-            selected.add(accumProbs[accumProbs.keys.last { a -> r <= a }])
-        }
+        val selected: MutableList<Character?> = mutableListOf()
+        rand.mapTo(selected) { accumProbs[accumProbs.keys.last { a -> it <= a }] }
         return selected.filterNotNull()
 
     }

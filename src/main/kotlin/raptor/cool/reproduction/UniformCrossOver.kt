@@ -1,8 +1,8 @@
 package raptor.cool.reproduction
 
-import characters.Character
-import gear.Gear
-import reproduction.Reproductor
+import raptor.cool.characters.Character
+import raptor.cool.characters.getGearMap
+import raptor.cool.gear.Gear
 
 class UniformCrossOver(var probability: Double = 0.5) : Reproductor {
 
@@ -18,6 +18,6 @@ class UniformCrossOver(var probability: Double = 0.5) : Reproductor {
 
         for (i in (1..L)) newGear.add(if(Math.random() > probability) chromosome2[i] else chromosome1[i])
 
-        return character1.getHeir(h, Character.getGearMap(newGear)) //Asumption: both characters are from the same heir.
+        return character1.getHeir(h, getGearMap(newGear)) //Asumption: both characters are from the same heir.
     }
 }

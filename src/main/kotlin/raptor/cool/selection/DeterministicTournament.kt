@@ -1,13 +1,11 @@
 package raptor.cool.selection
 
-import characters.Character
-import selection.Selector
+import raptor.cool.characters.Character
 import java.util.*
 
-class DeterministicTournament(m: Int) : Selector {
-    val m = m
+class DeterministicTournament(val m: Int) : Selector {
     override fun select(characters: Collection<Character>, k: Int): Collection<Character> {
-        var winners = mutableListOf<Character>()
+        val winners = mutableListOf<Character>()
         for(i in 1..k) {
             val rand = Random()
             var participants = emptyList<Character>()

@@ -1,7 +1,6 @@
-package selection
+package raptor.cool.selection
 
-import characters.Character
-import kotlin.comparisons.compareBy
+import raptor.cool.characters.Character
 
 class Elite : Selector {
     override fun select(characters: Collection<Character>, k: Int): Collection<Character> {

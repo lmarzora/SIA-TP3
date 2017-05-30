@@ -1,6 +1,6 @@
-package replacement
+package raptor.cool.replacement
 
-import characters.Character
+import raptor.cool.characters.Character
 
 interface Replacer {
     fun replace(characters: Collection<Character>): Collection<Character>

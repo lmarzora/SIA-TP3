@@ -1,6 +1,6 @@
-package characters
+package raptor.cool.characters
 
-import gear.Gear
+import raptor.cool.gear.Gear
 
 class Defender(height: Double, gear: MutableMap<String, Gear>) : Character(height, gear) {
     override fun getHeir(height: Double, gear: MutableMap<String, Gear>): Character {
