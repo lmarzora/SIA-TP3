@@ -15,9 +15,7 @@ class Ranking : Selector {
             accumProbs.put(accum,competitors[i])
         }
         val rand = (1..k).map { Math.random() }
-
-        val selected: MutableList<Character?> = mutableListOf()
-        rand.mapTo(selected) { accumProbs[accumProbs.keys.last { a -> it <= a }] }
+        val selected = rand.map { r -> accumProbs[accumProbs.keys.firstOrNull { a -> a > r }] }
         return selected.filterNotNull()
 
     }

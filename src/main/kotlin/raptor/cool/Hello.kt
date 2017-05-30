@@ -1,7 +1,7 @@
 import raptor.cool.characters.Character
 import raptor.cool.characters.Warrior
 import raptor.cool.gear.Gear
-import raptor.cool.selection.Universal
+import raptor.cool.selection.BoltzmannSelector
 import java.util.*
 
 fun main(args: Array<String>) {
@@ -33,7 +33,7 @@ fun testSelection() {
 	var characters = emptyList<Character>()
 	val rand = Random()
 	for (i in 1..10) {
-		characters += Warrior((1.5 + Math.random()) * .5, mutableMapOf(
+		characters += Warrior((1.5 + Math.random() * .5), mutableMapOf(
 				"armor" to armor[rand.nextInt(armor.size)],
 				"weapons" to weapons[rand.nextInt(weapons.size)],
 				"helms" to helms[rand.nextInt(helms.size)],
@@ -41,10 +41,10 @@ fun testSelection() {
 				"boots" to boots[rand.nextInt(boots.size)]))
 	}
 
-//	characters.forEach { c -> print(c.toString() + " " + c.getFitness() + "\n")}
+//	characters.forEach { println("$it")}
 
-	val rouletteSelector = Universal()
-
+	val rouletteSelector = BoltzmannSelector(1.0)
+	//val rouletteSelector = Roulette()
 	rouletteSelector.select(characters, 2).forEach { c -> println(c) }
 
 }

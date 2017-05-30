@@ -15,7 +15,7 @@ class Universal : Selector {
         val seed = Math.random()
         val rand = (1..k).map { j -> (seed + j - 1) / k }
 
-        val selected = rand.map { accumulatedFitness[accumulatedFitness.keys.last { a -> it <= a }] }
+        val selected = rand.map { r -> accumulatedFitness[accumulatedFitness.keys.firstOrNull { a -> a > r }] }
         return selected.filterNotNull()
     }
 }
