@@ -4,7 +4,7 @@ import raptor.cool.characters.Character
 import java.util.*
 
 class DeterministicTournament(val m: Int) : Selector {
-    override fun select(characters: Collection<Character>, k: Int): Collection<Character> {
+    override fun select(characters: List<Character>, k: Int): List<Character> {
         val winners = mutableListOf<Character>()
         for(i in 1..k) {
             val rand = Random()

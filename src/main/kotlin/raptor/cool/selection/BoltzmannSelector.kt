@@ -3,7 +3,7 @@ package raptor.cool.selection
 import raptor.cool.characters.Character
 
 class BoltzmannSelector(var temp: Double) : Selector {
-    override fun select(characters: Collection<Character>, k: Int): Collection<Character> {
+    override fun select(characters: List<Character>, k: Int): List<Character> {
         var expVal = characters.map { Math.exp(it.getFitness() / temp) }
         val meanTemp = expVal.sumByDouble { it } / characters.size
         expVal = expVal.map { it / meanTemp }

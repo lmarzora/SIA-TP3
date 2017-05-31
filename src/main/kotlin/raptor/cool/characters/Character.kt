@@ -4,7 +4,7 @@ import raptor.cool.gear.Gear
 import java.lang.Math.pow
 import java.lang.Math.tanh
 
-abstract class Character(val height: Double, val gear: MutableMap<String, Gear>) {
+abstract class Character(val height: Double, val gear: Map<String, Gear>) {
     val strength = 100 * tanh(0.01 * gear.values.sumByDouble(Gear::strength) * strengthMul)
     val dexterity = tanh(0.01 * gear.values.sumByDouble(Gear::dexterity) * dexterityMul)
     val expertise = 0.6 * tanh(0.01 * gear.values.sumByDouble(Gear::expertise) * expertiseMul)

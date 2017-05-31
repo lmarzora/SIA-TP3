@@ -4,12 +4,12 @@ import raptor.cool.characters.Character
 import java.lang.Math.random
 
 class Roulette : Selector {
-    override fun select(characters: Collection<Character>, k: Int): Collection<Character> {
+    override fun select(characters: List<Character>, k: Int): List<Character> {
         val accumulatedFitness: MutableMap<Double, Character> = mutableMapOf()
         var accum = 0.0
-        val totalfitness = characters.sumByDouble(Character::getFitness)
+        val totalFitness = characters.sumByDouble(Character::getFitness)
         for (c: Character in characters) {
-            accum += c.getFitness()/totalfitness
+            accum += c.getFitness() / totalFitness
             accumulatedFitness.put(accum,c)
         }
 

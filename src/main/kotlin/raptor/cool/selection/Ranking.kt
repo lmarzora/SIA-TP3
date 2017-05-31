@@ -3,7 +3,7 @@ package raptor.cool.selection
 import raptor.cool.characters.Character
 
 class Ranking : Selector {
-    override fun select(characters: Collection<Character>, k: Int): Collection<Character> {
+    override fun select(characters: List<Character>, k: Int): List<Character> {
         val competitors = characters.toList()
         val ranking = competitors.sortedWith(compareByDescending(Character::getFitness))
         val accumProbs = mutableMapOf<Double, Character>()
