@@ -3,7 +3,7 @@ package raptor.cool.selection
 import raptor.cool.characters.Character
 
 class Universal : Selector {
-    override fun select(characters: Collection<Character>, k: Int): Collection<Character> {
+    override fun select(characters: List<Character>, k: Int): List<Character> {
         val accumulatedFitness: MutableMap<Double, Character> = mutableMapOf()
         var accum = 0.0
         val totalfitness = characters.sumByDouble(Character::getFitness)

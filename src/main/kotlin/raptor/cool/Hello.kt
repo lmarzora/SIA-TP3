@@ -6,12 +6,11 @@ import raptor.cool.gear.loadGears
 import raptor.cool.selection.Roulette
 
 fun main(args: Array<String>) {
-	testSelection()
+    testSelection(args[0])
 }
 
-fun testSelection() {
-
-    val dataDir = "/home/lumarzo/fulldata/"
+fun testSelection(dataDir: String) {
+    println(dataDir)
     val gearFiles = mapOf("weapon" to "armas.tsv", "boot" to "botas.tsv",
             "helmet" to "cascos.tsv", "glove" to "guantes.tsv",
             "armor" to "pecheras.tsv")
