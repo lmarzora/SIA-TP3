@@ -6,8 +6,10 @@ import raptor.cool.gear.loadGears
 import raptor.cool.selection.Roulette
 
 fun main(args: Array<String>) {
-    var List<Character> gen = generatePopulation()
+    var gen = generatePopulation()
+    var previousGen: List<Character>
     val params = parseConfiguration(args[0])
+    var meanFitness = mutableListOf<Double>()
     var gens = 0
     var genLimit = true
     var structure = true
@@ -15,16 +17,18 @@ fun main(args: Array<String>) {
     var found = false
     while ( genLimit && structure && content && !found ) {
         //replacement logic (A*m1 + (1-A)*m2)
-        //previousGen = gen
+        previousGen = gen
         //gen = replacement(...)
         //meanFitness = list of the last X mean fitness (doubles)
 
 
-        genLimit = gens++ <= params.get("GenLimit")
-        structure = hasStructureChanged(previousGen, gen, params.get("StructLimit"))
+        genLimit = gens++ <= (params["GenLimit"] as Int)
+        structure = hasStructureChanged(previousGen, gen, params["StructLimit"] as Double)
         content = getMeanFitness(gen) > (meanFitness.sumByDouble {it} / meanFitness.size)
-        found = getBestCharacter(gen).getFitness() >= params.get("MaxFitness")
+        found = getBestCharacter(gen).getFitness() >= (params["MaxFitness"] as Double)
         //meanFitness = replace oldest mean fitness with new mean fitness
+
+        gen.forEach { it.happyBirthdayToYou() }
     }
 }
 
@@ -36,16 +40,18 @@ fun parseConfiguration(fileName: String ): Map<String, Any> {
     return emptyMap()   
 }
 
-fun hasStructureChanged(prevGen: List<Character>, gen: List<Character>, limit: Int): Boolean {
+fun hasStructureChanged(prevGen: List<Character>, gen: List<Character>, limit: Double): Boolean {
     //checks if limit% of the characters are overlapped in both lists
-    var matches = 0
-    for(i in 1..prevGen.size)
-        matches+= if(gen.contains(prevGen[i])) 1 else 0       
-    return limits > (matches/gen.size)
+    val matches = (1..prevGen.size).sumBy { if(gen.contains(prevGen[it])) 1 else 0 }
+    return limit > (matches/gen.size)
 }
 
 fun getMeanFitness(gen: List<Character>): Double {
     return gen.sumByDouble { it.getFitness() } / gen.size
+}
+
+fun getBestCharacter(chars: List<Character>): Character {
+    return chars.sortedBy { it.getFitness() }.first()
 }
 
 fun testSelection(dataDir: String) {
