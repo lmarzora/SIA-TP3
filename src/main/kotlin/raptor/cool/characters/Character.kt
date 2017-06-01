@@ -5,6 +5,8 @@ import java.lang.Math.pow
 import java.lang.Math.tanh
 
 abstract class Character(val height: Double, val gear: Map<String, Gear>) {
+    var age = 0
+
     val strength = 100 * tanh(0.01 * gear.values.sumByDouble(Gear::strength) * strengthMul)
     val dexterity = tanh(0.01 * gear.values.sumByDouble(Gear::dexterity) * dexterityMul)
     val expertise = 0.6 * tanh(0.01 * gear.values.sumByDouble(Gear::expertise) * expertiseMul)
@@ -35,6 +37,9 @@ abstract class Character(val height: Double, val gear: Map<String, Gear>) {
         return gearChromosome
     }
 
+    fun happyBirthdayToYou() {
+        age++
+    }
     companion object Settings {
         var strengthMul = 0.8
         var dexterityMul = 0.9

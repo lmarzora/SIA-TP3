@@ -12,20 +12,22 @@ class BatchReplacer(val k: Int,
                     val mutator: Mutator,
                     val reproductor: Reproductor) : Replacer {
     override fun replace(characters: List<Character>): List<Character> {
-        val parents = mutableListOf<Character>()
-        characters.mapTo(parents, { c -> c })
+        val parents: List<Character>
         if (k % 2 != 0) {
-            parents.add(parents.last())
+            parents = parentSelector.select(characters, k + 1)
+        } else {
+            parents = parentSelector.select(characters, k)
         }
         Collections.shuffle(parents)
-        val mothers = parents.slice(0..(k / 2) - 1)
-        val fathers = parents.slice((k / 2)..k - 1)
         val children = mutableListOf<Character>()
-        for ((mom, dad) in mothers.zip(fathers)) {
-            children.add(reproductor.reproduce(mom, dad))
-            children.add(reproductor.reproduce(mom, dad))
+        for (i in 1..2) {
+            val mothers = parents.slice(0..(k / 2) - 1)
+            val fathers = parents.slice((k / 2)..k - 1)
+            for ((mom, dad) in mothers.zip(fathers)) {
+                children.add(reproductor.reproduce(mom, dad))
+            }
         }
+        return mutator.mutate(children).take(k) + generationSelector.select(parents,parents.size - k)
 
-        return children.take(k)
     }
 }
