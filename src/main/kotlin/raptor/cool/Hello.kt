@@ -15,6 +15,10 @@ fun main(args: Array<String>) {
     var structure = true
     var content = true
     var found = false
+
+    //loadData(params["DataDir"] as String)
+    loadData(args[0])
+
     while ( genLimit && structure && content && !found ) {
         //replacement logic (A*m1 + (1-A)*m2)
         previousGen = gen
@@ -54,7 +58,7 @@ fun getBestCharacter(chars: List<Character>): Character {
     return chars.sortedBy { it.getFitness() }.first()
 }
 
-fun testSelection(dataDir: String) {
+fun loadData(dataDir: String) {
     println(dataDir)
     val gearFiles = mapOf("weapon" to "armas.tsv", "boot" to "botas.tsv",
             "helmet" to "cascos.tsv", "glove" to "guantes.tsv",
