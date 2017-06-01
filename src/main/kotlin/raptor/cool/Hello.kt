@@ -6,7 +6,46 @@ import raptor.cool.gear.loadGears
 import raptor.cool.selection.Roulette
 
 fun main(args: Array<String>) {
-    testSelection(args[0])
+    var List<Character> gen = generatePopulation()
+    val params = parseConfiguration(args[0])
+    var gens = 0
+    var genLimit = true
+    var structure = true
+    var content = true
+    var found = false
+    while ( genLimit && structure && content && !found ) {
+        //replacement logic (A*m1 + (1-A)*m2)
+        //previousGen = gen
+        //gen = replacement(...)
+        //meanFitness = list of the last X mean fitness (doubles)
+
+
+        genLimit = gens++ <= params.get("GenLimit")
+        structure = hasStructureChanged(previousGen, gen, params.get("StructLimit"))
+        content = getMeanFitness(gen) > (meanFitness.sumByDouble {it} / meanFitness.size)
+        found = getBestCharacter(gen).getFitness() >= params.get("MaxFitness")
+        //meanFitness = replace oldest mean fitness with new mean fitness
+    }
+}
+
+fun generatePopulation(): List<Character> {
+    return emptyList()
+}
+
+fun parseConfiguration(fileName: String ): Map<String, Any> {
+    return emptyMap()   
+}
+
+fun hasStructureChanged(prevGen: List<Character>, gen: List<Character>, limit: Int): Boolean {
+    //checks if limit% of the characters are overlapped in both lists
+    var matches = 0
+    for(i in 1..prevGen.size)
+        matches+= if(gen.contains(prevGen[i])) 1 else 0       
+    return limits > (matches/gen.size)
+}
+
+fun getMeanFitness(gen: List<Character>): Double {
+    return gen.sumByDouble { it.getFitness() } / gen.size
 }
 
 fun testSelection(dataDir: String) {
