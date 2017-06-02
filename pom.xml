@@ -12,10 +12,11 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <kotlin.version>1.1.2-4</kotlin.version>
+        <kotlin.version>1.1.1</kotlin.version>
         <junit.version>4.12</junit.version>
-        <kotlin.mainClass>HelloKt</kotlin.mainClass>
         <maven.assembly.plugin.version>2.6</maven.assembly.plugin.version>
+        <konfig.version>1.6.1.0</konfig.version>
+        <kotlin.mainClass>HelloKt</kotlin.mainClass>
     </properties>
 
     <dependencies>
@@ -26,9 +27,19 @@
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-reflect</artifactId>
+            <version>${kotlin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-test-junit</artifactId>
             <version>${kotlin.version}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.natpryce</groupId>
+            <artifactId>konfig</artifactId>
+            <version>${konfig.version}</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -41,7 +52,6 @@
     <build>
         <sourceDirectory>src/main/kotlin</sourceDirectory>
         <testSourceDirectory>src/test/kotlin</testSourceDirectory>
-
         <plugins>
             <plugin>
                 <groupId>org.jetbrains.kotlin</groupId>
