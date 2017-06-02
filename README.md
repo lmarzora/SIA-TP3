@@ -25,6 +25,15 @@ This repo comes with a default configuration file `default.properties`. You can 
 | A |    global.a   |   0.2 |
 | B | global.b |    0.4 |
 
+### Character multipliers
+| Paramter   |      Value in config file      |  Example |
+|:----------:|:-------------:|:------:|
+| Strength | multi.strength | 0.8 |
+| Dexterity | multi.dexterity | 0.9 |
+| Expertise | multi.expertise | 0.9 |
+| Resistance | multi.resistance | 1.2 |
+| Life | multi.life | 1.1 |
+
 ### Cut Conditions
 
 | Paramter   |      Value in config file      |  Example |
