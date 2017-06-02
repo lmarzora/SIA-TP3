@@ -14,13 +14,10 @@ class ContentMean(val generations: Int) : CutCondition() {
 
         val found = meanHistory.any { it < mean }
 
-        current = if(found) 0 else (current+1)
+        current = if (found) 0 else (current+1)
 
-        if (current > generations)
-            return true
-
-        if (meanHistory.size > generations)
-            meanHistory.removeAt(0)
+        if (current > generations) return true
+        if (meanHistory.size > generations) meanHistory.removeAt(0)
 
         meanHistory.add(meanHistory.size, mean)
         return false

@@ -20,8 +20,9 @@ class GenerationalReplacer(val k: Int,
         for (i in 1..2) {
             val mothers = parents.slice(0..(k / 2) - 1)
             val fathers = parents.slice((k / 2)..k - 1)
-            for ((mom, dad) in mothers.zip(fathers))
+            for ((mom, dad) in mothers.zip(fathers)) {
                 children.add(reproductor.reproduce(mom, dad))
+            }
 
         }
         return generationSelector.select(mutator.mutate(children) + parents,parents.size)

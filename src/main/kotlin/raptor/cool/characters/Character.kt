@@ -1,8 +1,6 @@
 package raptor.cool.characters
 
-import config
 import raptor.cool.gear.Gear
-import raptor.cool.input.multi
 import java.lang.Math.pow
 import java.lang.Math.tanh
 
@@ -44,11 +42,11 @@ abstract class Character(val height: Double, val gear: Map<String, Gear>) {
     }
 
     companion object Settings {
-        var strengthMul = config[multi.strength]
-        var dexterityMul = config[multi.dexterity]
-        var expertiseMul = config[multi.expertise]
-        var resistanceMul = config[multi.resistance]
-        var lifeMul = config[multi.life]
+        var strengthMul = 0.8
+        var dexterityMul = 0.9
+        var expertiseMul = 0.9
+        var resistanceMul = 1.2
+        var lifeMul = 1.1
     }
 }
 
@@ -56,8 +54,7 @@ fun getGearMap(list: MutableList<Gear?>): MutableMap<String, Gear> {
     val mp = mutableMapOf<String, Gear>()
     for (i in (0..(list.size - 1))) {
         val g = list[i]
-        if (g != null)
-            mp.put(whatGear(i), g)
+        if (g != null) mp.put(whatGear(i), g)
     }
     return mp
 }

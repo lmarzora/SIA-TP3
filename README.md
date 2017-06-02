@@ -25,7 +25,7 @@ This repo comes with a default configuration file `default.properties`. You can 
 | A |    global.a   |   0.2 |
 | B | global.b |    0.4 |
 
-### Character multipliers
+### Character Multipliers
 | Paramter   |      Value in config file      |  Example |
 |:----------:|:-------------:|:------:|
 | Strength | multi.strength | 0.8 |

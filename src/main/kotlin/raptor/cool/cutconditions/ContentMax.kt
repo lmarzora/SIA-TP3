@@ -10,11 +10,11 @@ class ContentMax(val generations: Int) : CutCondition() {
 
     override fun shouldStop(simulation: Simulation): Boolean {
         val s = simulation as GeneticAlgorithmSimulation
-        val currentMax = s.population.maxBy { it.getFitness() }!!.getFitness() // Get the max fitness of the population
+        val currentMax = s.population.maxBy { it.getFitness() }!!.getFitness()
 
-        if (currentMax < maxFitness)
+        if (currentMax < maxFitness) {
             current++
-        else {
+        } else {
             current = 0
             maxFitness = currentMax
         }

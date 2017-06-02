@@ -7,6 +7,7 @@ import raptor.cool.gear.Gear
 import raptor.cool.gear.getRandomGear
 import raptor.cool.gear.loadGears
 import raptor.cool.input.cut
+import raptor.cool.input.multi
 import raptor.cool.mutation.Mutator
 import raptor.cool.replacement.Replacer
 import raptor.cool.reproduction.OnePointCross
@@ -30,8 +31,13 @@ fun main(args: Array<String>) {
         }
     }
 
-    if (inputParams.containsKey("config"))
-        config = ConfigurationProperties.fromFile(File(inputParams["config"] as String))
+    if (inputParams.containsKey("config")) config = ConfigurationProperties.fromFile(File(inputParams["config"] as String))
+
+    Character.Settings.strengthMul = config[multi.strength]
+    Character.Settings.dexterityMul = config[multi.dexterity]
+    Character.Settings.expertiseMul = config[multi.expertise]
+    Character.Settings.resistanceMul = config[multi.resistance]
+    Character.Settings.lifeMul = config[multi.life]
 
     val simulation = GeneticAlgorithmSimulation()
 

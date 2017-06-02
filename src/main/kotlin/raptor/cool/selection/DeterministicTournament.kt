@@ -9,7 +9,9 @@ class DeterministicTournament(val m: Int) : Selector {
         for(i in 1..k) {
             val rand = Random()
             var participants = emptyList<Character>()
-            for(n in 1..m) participants += characters.toList()[rand.nextInt(characters.size)]
+            for(n in 1..m) {
+                participants += characters.toList()[rand.nextInt(characters.size)]
+            }
             winners.add(participants.sortedWith(compareBy(Character::getFitness)).first())
         }
         return winners

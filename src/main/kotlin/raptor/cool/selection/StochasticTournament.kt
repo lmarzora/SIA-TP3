@@ -15,10 +15,11 @@ class StochasticTournament(val p: Double) : Selector {
             participants.add(characters[rand.nextInt(characters.size)])
             val sortedParticipants = participants.sortedWith(compareBy(Character::getFitness))
 
-            if (coin < p)
+            if (coin < p) {
                 winners.add(sortedParticipants.first())
-            else
+            } else {
                 winners.add(sortedParticipants.last())
+            }
 
         }
         return winners

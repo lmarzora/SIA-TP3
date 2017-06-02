@@ -13,10 +13,10 @@ class Structure(val unchanged:Double) : CutCondition() {
         var matches = 0
         prevGeneration.filter { s.population.contains(it) }.forEach { matches ++ }
 
-        if (unchanged > matches/s.population.size)
-            return true
+        if (unchanged > matches/s.population.size) return true
 
         prevGeneration = s.population
+
         return false
     }
 }

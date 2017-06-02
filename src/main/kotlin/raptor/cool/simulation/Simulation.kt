@@ -13,26 +13,25 @@ abstract class Simulation {
     }
 
     fun startSimulation() {
-        for (observer in observers)
+        for (observer in observers) {
             observer.didStart(this)
+        }
     }
 
     fun updateObservers() {
-        for (observer in observers)
+        for (observer in observers) {
             observer.notify(this)
+        }
     }
 
     fun finishSimulation() {
-        for (observer in observers)
+        for (observer in observers) {
             observer.didFinish(this)
+        }
     }
 
     fun shouldStopSimulation(): Boolean {
-        for (observer in observers) {
-            if (observer.shouldStop(this))
-                return true
-        }
-        return false
+        return observers.any { it.shouldStop(this) }
     }
 
     abstract fun simulate(): Boolean
