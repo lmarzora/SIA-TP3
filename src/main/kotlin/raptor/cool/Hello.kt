@@ -30,8 +30,8 @@ fun main(args: Array<String>) {
         }
     }
 
-    if (inputParams.containsKey("global")) {
-        config = ConfigurationProperties.fromFile(File(inputParams["global"] as String))
+    if (inputParams.containsKey("config")) {
+        config = ConfigurationProperties.fromFile(File(inputParams["config"] as String))
     }
 
     val simulation = GeneticAlgorithmSimulation()
