@@ -23,7 +23,6 @@ fun loadGears(filepath: String): List<Gear> {
     scan.nextLine()
     while (scan.hasNext()) {
         line = scan.nextLine()
-//      println(line)
         gears.add(parseGearString(line))
     }
     return gears

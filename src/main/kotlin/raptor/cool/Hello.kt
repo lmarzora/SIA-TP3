@@ -30,9 +30,8 @@ fun main(args: Array<String>) {
         }
     }
 
-    if (inputParams.containsKey("config")) {
+    if (inputParams.containsKey("config"))
         config = ConfigurationProperties.fromFile(File(inputParams["config"] as String))
-    }
 
     val simulation = GeneticAlgorithmSimulation()
 
@@ -119,8 +118,8 @@ fun generatePopulation(): List<Character> {
     return emptyList()
 }
 
+//checks if limit% of the characters are overlapped in both lists
 fun hasStructureChanged(prevGen: List<Character>, gen: List<Character>, limit: Double): Boolean {
-    //checks if limit% of the characters are overlapped in both lists
     val matches = (1..prevGen.size).sumBy { if(gen.contains(prevGen[it])) 1 else 0 }
     return limit > (matches/gen.size)
 }

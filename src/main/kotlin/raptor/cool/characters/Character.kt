@@ -40,6 +40,7 @@ abstract class Character(val height: Double, val gear: Map<String, Gear>) {
     fun happyBirthdayToYou() {
         age++
     }
+
     companion object Settings {
         var strengthMul = 0.8
         var dexterityMul = 0.9

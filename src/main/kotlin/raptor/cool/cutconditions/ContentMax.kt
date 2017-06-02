@@ -12,18 +12,13 @@ class ContentMax(val generations: Int) : CutCondition() {
         val s = simulation as GeneticAlgorithmSimulation
         val currentMax = s.population.maxBy { it.getFitness() }!!.getFitness() // Get the max fitness of the population
 
-        if (currentMax < maxFitness) {
+        if (currentMax < maxFitness)
             current++
-        } else {
+        else {
             current = 0
             maxFitness = currentMax
         }
 
-        if (current > generations) {
-            return true
-        }
-
-        return false
-    }
-
+        return current > generations
+      }
 }

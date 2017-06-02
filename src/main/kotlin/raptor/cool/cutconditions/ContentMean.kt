@@ -12,27 +12,16 @@ class ContentMean(val generations: Int) : CutCondition() {
         val s = simulation as GeneticAlgorithmSimulation
         val mean = s.population.sumByDouble { it.getFitness() } / s.population.size
 
-        var found = false
-        for (oldMean in meanHistory) {
-            if (oldMean < mean) {
-                found = true
-                break
-            }
-        }
+        val found = meanHistory.any { it < mean }
 
-        if (found) {
-            current = 0
-        } else {
-            current++
-        }
+        current = if(found) 0 else (current+1)
 
-        if (current > generations) {
+        if (current > generations)
             return true
-        }
 
-        if (meanHistory.size > generations) {
+        if (meanHistory.size > generations)
             meanHistory.removeAt(0)
-        }
+
         meanHistory.add(meanHistory.size, mean)
         return false
     }

@@ -9,6 +9,7 @@ class IterativeReplacer(val k: Int,
                         val cupid: Selector,
                         val mutator: Mutator,
                         val reproductor: Reproductor) : Replacer  {
+
     override fun replace(parents: List<Character>): List<Character> {
         val children = mutableListOf<Character>()
         val N = parents.size

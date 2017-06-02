@@ -19,5 +19,4 @@ class GeneticAlgorithmSimulation : Simulation() {
         finishSimulation()
         return true
     }
-
 }
