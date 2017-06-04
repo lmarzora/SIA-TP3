@@ -6,7 +6,7 @@ import raptor.cool.simulation.Simulation
 class ContentMean(val generations: Int) : CutCondition() {
 
     var current = 0
-    var meanHistory: MutableList<Double> = mutableListOf()
+    var meanHistory = mutableListOf<Double>()
 
     override fun shouldStop(simulation: Simulation): Boolean {
         val s = simulation as GeneticAlgorithmSimulation
