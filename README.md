@@ -24,6 +24,7 @@ This repo comes with a default configuration file `default.properties`. You can 
 | Gear Data |  global.data | test.tsv |
 | A |    global.a   |   0.2 |
 | B | global.b |    0.4 |
+| N | global.N |    20 |
 
 ### Character Multipliers
 | Paramter   |      Value in config file      |  Example |
@@ -49,9 +50,13 @@ This repo comes with a default configuration file `default.properties`. You can 
 ### Selection
 | Paramter   |      Value in config file      |  Example |
 |:----------:|:-------------:|:------:|
-| Selection Method 1 | selection.method1 |    elite |
-| Selection Method 2 | selection.method2 |    roulette |
-
+| Selection Temperature | selection.temperature |    50 |
+| Selection Children Size | selection.k |    20 |
+| Selection probability | selection.probability |    0.7 |
+| Parent Selection Method 1 | selection.parentMethod1 |    elite |
+| Parent Selection Method 2 | selection.parentMethod2 |    roulette |
+| Children Selection Method 1 | selection.childrenMethod1 |    ranking |
+| Children Selection Method 2 | selection.childrenMethod2 |    random |
 
 #### Possible method values
 | Method   |      Key      |
@@ -69,6 +74,7 @@ This repo comes with a default configuration file `default.properties`. You can 
 ### Replacement
 | Paramter   |      Value in config file      |  Example |
 |:----------:|:-------------:|:------:|
+| Replacement Children Size | replacement.k |    20 |
 | Replacement Method 1 | replacement.method1 |    batch |
 | Replacement Method 2 | replacement.method2 |    generational |
 
@@ -95,6 +101,9 @@ This repo comes with a default configuration file `default.properties`. You can 
 ### Mutation
 | Paramter   |      Value in config file      |  Example |
 |:----------:|:-------------:|:------:|
+| Mutation Probability | mutation.probability |    0.7 |
+| Mutation Minimum Height | mutation.minHeight |    1.3 |
+| Mutation Maximum Height | mutation.maxHeight |    2.0 |
 | Mutation Method | mutation.method |    uniform |
 
 #### Possible method values

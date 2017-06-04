@@ -3,12 +3,15 @@ package raptor.cool.reproduction
 import raptor.cool.characters.Character
 import raptor.cool.characters.getGearMap
 import raptor.cool.gear.Gear
+import java.util.*
 
 
-class AnularCross(var locus: Int, var l: Int) : Reproductor {
+class AnularCross() : Reproductor {
 
     override fun reproduce(mother: Character, father: Character): Character {
-
+        val rnd = Random()
+        val locus = rnd.nextInt(7)
+        val l = rnd.nextInt(6)
         val newGear = mutableListOf<Gear?>()
         val chromosome1 = mother.getGearChromosome()
         val chromosome2 = father.getGearChromosome()

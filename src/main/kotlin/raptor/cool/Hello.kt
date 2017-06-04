@@ -7,6 +7,7 @@ import raptor.cool.gear.Gear
 import raptor.cool.gear.getRandomGear
 import raptor.cool.gear.loadGears
 import raptor.cool.input.cut
+import raptor.cool.input.global
 import raptor.cool.input.multi
 import raptor.cool.mutation.Mutator
 import raptor.cool.replacement.Replacer
@@ -20,6 +21,7 @@ import java.io.File
 
 val inputParams: MutableMap<String, Any> = mutableMapOf()
 var config = ConfigurationProperties.fromResource("default.properties")
+var gearMap = mutableMapOf<String, List<Gear>>()
 
 fun main(args: Array<String>) {
 
@@ -39,6 +41,12 @@ fun main(args: Array<String>) {
     Character.Settings.resistanceMul = config[multi.resistance]
     Character.Settings.lifeMul = config[multi.life]
 
+    val gearFiles = mapOf("weapon" to "armas.tsv", "boot" to "botas.tsv",
+            "helmet" to "cascos.tsv", "glove" to "guantes.tsv",
+            "armor" to "pecheras.tsv")
+    gearMap = mutableMapOf<String, List<Gear>>()
+    gearFiles.mapValuesTo(gearMap, { loadGears(config[global.data] + it.value) })
+
     val simulation = GeneticAlgorithmSimulation()
 
     try { simulation.addObserver(ContentMean(config[cut.contentmean])) } catch (e: Misconfiguration) {}
@@ -46,29 +54,4 @@ fun main(args: Array<String>) {
     try { simulation.addObserver(MaxGenerations(config[cut.maxgenerations])) } catch (e: Misconfiguration) {}
     try { simulation.addObserver(OptimumCharacter(config[cut.maxfitness])) } catch (e: Misconfiguration) {}
     try { simulation.addObserver(Structure(config[cut.structure])) } catch (e: Misconfiguration) {}
-}
-
-fun loadData(dataDir: String) {
-    println(dataDir)
-    val gearFiles = mapOf("weapon" to "armas.tsv", "boot" to "botas.tsv",
-            "helmet" to "cascos.tsv", "glove" to "guantes.tsv",
-            "armor" to "pecheras.tsv")
-    val gearMap = mutableMapOf<String, List<Gear>>()
-    gearFiles.mapValuesTo(gearMap, { loadGears(dataDir + it.value) })
-
-    val characters = mutableListOf<Character>()
-
-	for (i in 1..10) {
-        val characterMap = mutableMapOf<String, Gear>()
-        for (key in gearMap.keys) {
-            characterMap.put(key, getRandomGear(key, gearMap))
-        }
-        characters.add(Warrior((1.5 + Math.random() * .5), characterMap))
-	}
-
-    characters.forEach { println("$it") }
-
-    val rouletteSelector = Roulette()
-	rouletteSelector.select(characters, 2).forEach { c -> println(c) }
-
 }

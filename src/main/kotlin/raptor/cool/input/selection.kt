@@ -6,6 +6,8 @@ object selection : PropertyGroup() {
     val temperature by doubleType
     val k by intType
     val probability by doubleType
-    val method1 by stringType
-    val method2 by stringType
+    val parentMethod1 by stringType
+    val parentMethod2 by stringType
+    val childrenMethod1 by stringType
+    val childrenMethod2 by stringType
 }
