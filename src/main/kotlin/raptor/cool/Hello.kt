@@ -45,7 +45,7 @@ fun main(args: Array<String>) {
             "helmet" to "cascos.tsv", "glove" to "guantes.tsv",
             "armor" to "pecheras.tsv")
     gearMap = mutableMapOf<String, List<Gear>>()
-    gearFiles.mapValuesTo(gearMap, { loadGears(config[global.data] + it.value) })
+    gearFiles.mapValuesTo(gearMap, { loadGears(config[global.data] + File.separator + it.value) })
 
     val simulation = GeneticAlgorithmSimulation()
 
@@ -54,4 +54,6 @@ fun main(args: Array<String>) {
     try { simulation.addObserver(MaxGenerations(config[cut.maxgenerations])) } catch (e: Misconfiguration) {}
     try { simulation.addObserver(OptimumCharacter(config[cut.maxfitness])) } catch (e: Misconfiguration) {}
     try { simulation.addObserver(Structure(config[cut.structure])) } catch (e: Misconfiguration) {}
+
+    simulation.simulate()
 }

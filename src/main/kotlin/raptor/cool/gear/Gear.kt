@@ -17,6 +17,7 @@ fun parseGearString(line: String): Gear {
 
 fun loadGears(filepath: String): List<Gear> {
     val gears = mutableListOf<Gear>()
+    println(filepath)
     val scan = Scanner(File(filepath).inputStream())
     var line: String
     scan.useDelimiter("\n")

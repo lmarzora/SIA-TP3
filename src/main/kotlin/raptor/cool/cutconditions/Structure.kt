@@ -11,9 +11,11 @@ class Structure(val changed:Double) : CutCondition() {
     override fun shouldStop(simulation: Simulation): Boolean {
         val s = simulation as GeneticAlgorithmSimulation
         var matches = 0
+        if(prevGeneration.size == 0)
+            return false
         prevGeneration.filter { s.population.contains(it) }.forEach { matches ++ }
 
-        if (changed < matches/s.population.size) return true
+        if (changed > matches/s.population.size) return true
 
         prevGeneration = s.population
 

@@ -9,10 +9,7 @@ import raptor.cool.gear.getRandomGear
 import raptor.cool.input.*
 import raptor.cool.mutation.Mutator
 import raptor.cool.mutation.UniformMutator
-import raptor.cool.replacement.BatchReplacer
-import raptor.cool.replacement.GenerationalReplacer
-import raptor.cool.replacement.IterativeReplacer
-import raptor.cool.replacement.Replacer
+import raptor.cool.replacement.*
 import raptor.cool.reproduction.*
 import raptor.cool.selection.*
 
@@ -20,17 +17,20 @@ class GeneticAlgorithmSimulation : Simulation() {
 
     var generations = 0
     var population = generatePopulation()
+    val size1 = (config[replacement.k]*config[global.b]).toInt()
+    val size2 = config[replacement.k] - size1
 
     val mutator = getMutator(config[mutation.method])
     val reproductor = getReproductor(config[reproduction.method])
-    val parentSelector = if(Math.random() > config[global.b]) getSelector(config[selection.parentMethod1]) else getSelector(config[selection.parentMethod2])
-    val childrenSelector = if(Math.random() > config[global.b]) getSelector(config[selection.childrenMethod1]) else getSelector(config[selection.childrenMethod2])
-    val replacer = if(Math.random() > config[global.a]) getReplacer(config[replacement.method1], parentSelector, childrenSelector, mutator, reproductor) else getReplacer(config[replacement.method2], parentSelector, childrenSelector, mutator, reproductor)
+    val parentSelector = MixedSelector(config[global.a], getSelector(config[selection.parentMethod1]), getSelector(config[selection.parentMethod2]))
+    val childrenSelector = MixedSelector(config[global.a], getSelector(config[selection.childrenMethod1]), getSelector(config[selection.childrenMethod2]))
+    val replacer = MixedReplacer(config[global.b], getReplacer(config[replacement.method1], size1, parentSelector, childrenSelector, mutator, reproductor), getReplacer(config[replacement.method2], size2, parentSelector, childrenSelector, mutator, reproductor))
 
     override fun simulate(): Boolean {
         startSimulation()
         while (!shouldStopSimulation()) {
             population = replacer.replace(population)
+            println(population.sortedBy { it.getFitness() }.first().getFitness().toString() + "......." + population.sortedBy { it.getFitness() }.last().getFitness())
             updateObservers()
             population.forEach { it.happyBirthdayToYou() }
             generations++
@@ -53,8 +53,7 @@ fun generatePopulation(): List<Character> {
     return characters
 }
 
-fun getReplacer(name: String, parentSelector: Selector, childrenSelector: Selector, mutator: Mutator, reproductor: Reproductor): Replacer {
-    val k = config[replacement.k]
+fun getReplacer(name: String, k: Int, parentSelector: Selector, childrenSelector: Selector, mutator: Mutator, reproductor: Reproductor): Replacer {
     when(name) {
         "batch" -> return BatchReplacer(k, parentSelector, childrenSelector, mutator, reproductor)
         "generational" -> return GenerationalReplacer(k, parentSelector, childrenSelector, mutator, reproductor)

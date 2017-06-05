@@ -52,7 +52,7 @@ This repo comes with a default configuration file `default.properties`. You can 
 |:----------:|:-------------:|:------:|
 | Selection Temperature | selection.temperature |    50 |
 | Selection Children Size | selection.k |    20 |
-| Selection probability | selection.probability |    0.7 |
+| Selection Probability | selection.probability |    0.7 |
 | Parent Selection Method 1 | selection.parentMethod1 |    elite |
 | Parent Selection Method 2 | selection.parentMethod2 |    roulette |
 | Children Selection Method 1 | selection.childrenMethod1 |    ranking |
