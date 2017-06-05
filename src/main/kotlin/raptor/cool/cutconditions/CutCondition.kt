@@ -16,4 +16,5 @@ abstract class CutCondition : SimulationObserver {
     override fun notify(simulation: Simulation) {
 
     }
+
 }

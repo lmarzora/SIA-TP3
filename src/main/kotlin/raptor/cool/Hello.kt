@@ -35,11 +35,11 @@ fun main(args: Array<String>) {
 
     if (inputParams.containsKey("config")) config = ConfigurationProperties.fromFile(File(inputParams["config"] as String))
 
-    Character.Settings.strengthMul = config[multi.strength]
-    Character.Settings.dexterityMul = config[multi.dexterity]
-    Character.Settings.expertiseMul = config[multi.expertise]
-    Character.Settings.resistanceMul = config[multi.resistance]
-    Character.Settings.lifeMul = config[multi.life]
+    Character.strengthMul = config[multi.strength]
+    Character.dexterityMul = config[multi.dexterity]
+    Character.expertiseMul = config[multi.expertise]
+    Character.resistanceMul = config[multi.resistance]
+    Character.lifeMul = config[multi.life]
 
     val gearFiles = mapOf("weapon" to "armas.tsv", "boot" to "botas.tsv",
             "helmet" to "cascos.tsv", "glove" to "guantes.tsv",

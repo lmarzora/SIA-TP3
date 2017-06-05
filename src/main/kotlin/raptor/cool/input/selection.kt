@@ -4,7 +4,7 @@ import com.natpryce.konfig.*
 
 object selection : PropertyGroup() {
     val temperature by doubleType
-    val k by intType
+    val m by intType
     val probability by doubleType
     val parentMethod1 by stringType
     val parentMethod2 by stringType

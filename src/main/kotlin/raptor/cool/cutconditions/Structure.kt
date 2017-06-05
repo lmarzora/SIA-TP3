@@ -15,10 +15,15 @@ class Structure(val changed:Double) : CutCondition() {
             return false
         prevGeneration.filter { s.population.contains(it) }.forEach { matches ++ }
 
+        if (changed > matches/s.population.size) shouldStopWarning()
         if (changed > matches/s.population.size) return true
 
         prevGeneration = s.population
 
         return false
+    }
+
+    override fun shouldStopWarning() {
+        println("[Structure Observer]: The % of similar characters does not goes above $changed")
     }
 }

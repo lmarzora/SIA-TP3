@@ -51,7 +51,7 @@ This repo comes with a default configuration file `default.properties`. You can 
 | Paramter   |      Value in config file      |  Example |
 |:----------:|:-------------:|:------:|
 | Selection Temperature | selection.temperature |    50 |
-| Selection Children Size | selection.k |    20 |
+| Selection Children Size | selection.m |    20 |
 | Selection Probability | selection.probability |    0.7 |
 | Parent Selection Method 1 | selection.parentMethod1 |    elite |
 | Parent Selection Method 2 | selection.parentMethod2 |    roulette |

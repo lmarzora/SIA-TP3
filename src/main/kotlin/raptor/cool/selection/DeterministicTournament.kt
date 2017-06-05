@@ -12,7 +12,7 @@ class DeterministicTournament(val m: Int) : Selector {
             for(n in 1..m) {
                 participants += characters.toList()[rand.nextInt(characters.size)]
             }
-            winners.add(participants.sortedWith(compareBy(Character::getFitness)).first())
+            winners.add(participants.sortedWith(compareBy(Character::getFitness)).last())
         }
         return winners
     }

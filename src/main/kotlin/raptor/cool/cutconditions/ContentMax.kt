@@ -19,6 +19,11 @@ class ContentMax(val generations: Int) : CutCondition() {
             maxFitness = currentMax
         }
 
+        if(current>generations) shouldStopWarning()
         return current > generations
       }
+
+    override fun shouldStopWarning() {
+        println("[Content Observer]: Content has not changed in the last $generations generations")
+    }
 }

@@ -29,8 +29,10 @@ class GeneticAlgorithmSimulation : Simulation() {
     override fun simulate(): Boolean {
         startSimulation()
         while (!shouldStopSimulation()) {
+            var i = 0
             population = replacer.replace(population)
-            println(population.sortedBy { it.getFitness() }.first().getFitness().toString() + "......." + population.sortedBy { it.getFitness() }.last().getFitness())
+            population.map { println("${i++} -> -> "+it.getFitness()) }
+            println("----------------------------------------------")
             updateObservers()
             population.forEach { it.happyBirthdayToYou() }
             generations++
@@ -82,7 +84,7 @@ fun getReproductor(name: String): Reproductor {
 fun getSelector(name: String): Selector {
     when(name) {
         "boltzmann" -> return BoltzmannSelector(config[selection.temperature])
-        "deterministic" -> return DeterministicTournament(config[selection.k])
+        "deterministic" -> return DeterministicTournament(config[selection.m])
         "elite" -> return Elite()
         "randomd" -> return RandomDistinctSelector()
         "random" -> return RandomSelector()

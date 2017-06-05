@@ -25,6 +25,6 @@ class GenerationalReplacer(var k: Int,
                 children.add(reproductor.reproduce(mom, dad))
             }
         }
-        return generationSelector.select(mutator.mutate(children) + parents,parents.size)
+        return generationSelector.select(mutator.mutate(children) + parents,characters.size)
     }
 }

@@ -20,7 +20,6 @@ class StochasticTournament(val p: Double) : Selector {
             } else {
                 winners.add(sortedParticipants.last())
             }
-
         }
         return winners
     }

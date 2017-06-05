@@ -6,6 +6,12 @@ import raptor.cool.simulation.Simulation
 class OptimumCharacter(val maxFitness:Double) : CutCondition() {
 
     override fun shouldStop(simulation: Simulation): Boolean {
-        return (simulation as GeneticAlgorithmSimulation).population.any { it.getFitness() >= maxFitness }
+        val ans =  (simulation as GeneticAlgorithmSimulation).population.any { it.getFitness() >= maxFitness }
+        if (ans) shouldStopWarning()
+        return ans
+    }
+
+    override fun shouldStopWarning() {
+        println("[OptimumCharacter Observer]: The best character get to $maxFitness fitness")
     }
 }

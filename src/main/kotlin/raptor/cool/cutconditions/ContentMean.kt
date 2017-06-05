@@ -16,11 +16,16 @@ class ContentMean(val generations: Int) : CutCondition() {
 
         current = if (found) 0 else (current+1)
 
+        if (current > generations) shouldStopWarning()
         if (current > generations) return true
         if (meanHistory.size > generations) meanHistory.removeAt(0)
 
         meanHistory.add(meanHistory.size, mean)
         return false
+    }
+
+    override fun shouldStopWarning() {
+        println("[Mean Observer]: Mean content has not changed in the last $generations generations")
     }
 
 }

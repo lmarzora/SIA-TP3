@@ -6,5 +6,5 @@ interface SimulationObserver {
     fun notify(simulation: Simulation)
     fun didFinish(simulation: Simulation)
     fun shouldStop(simulation: Simulation): Boolean
-
+    fun shouldStopWarning()
 }

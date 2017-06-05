@@ -10,7 +10,6 @@ class RandomSelector : Selector{
         for (i in 1..k) {
             selected.add(characters[rand.nextInt(characters.size)])
         }
-
         return selected
     }
 }
