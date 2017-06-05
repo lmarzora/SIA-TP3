@@ -24,6 +24,6 @@ class BatchReplacer(val k: Int,
                 children.add(reproductor.reproduce(mom, dad))
             }
         }
-        return mutator.mutate(children) + generationSelector.select(parents,parents.size - K)
+        return mutator.mutate(children) + generationSelector.select(characters,characters.size - K)
     }
 }
