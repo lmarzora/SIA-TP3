@@ -26,7 +26,7 @@ This repo comes with a default configuration file `default.properties`. You can 
 | B | global.b |    0.4 |
 | N | global.N |    20 |
 
-### Character Multipliers
+### Character Features
 | Paramter   |      Value in config file      |  Example |
 |:----------:|:-------------:|:------:|
 | Heir | multi.heir | warrior |

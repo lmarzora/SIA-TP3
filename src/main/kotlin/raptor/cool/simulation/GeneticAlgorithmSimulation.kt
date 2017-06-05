@@ -32,6 +32,7 @@ class GeneticAlgorithmSimulation : Simulation() {
             var char = population.sortedBy { it.getFitness() }.last()
             println("h: ${char.height}")
             println("fitness: ${char.getFitness()}")
+            println("Char : ${char}")
             println("----------------------------------------------")
             updateObservers()
             population.forEach { it.happyBirthdayToYou() }
