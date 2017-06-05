@@ -7,6 +7,5 @@ import com.natpryce.konfig.stringType
 
 object replacement : PropertyGroup() {
     val k by intType
-    val method1 by stringType
-    val method2 by stringType
+    val method by stringType
 }

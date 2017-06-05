@@ -2,8 +2,7 @@ package raptor.cool.simulation
 
 import config
 import gearMap
-import raptor.cool.characters.Character
-import raptor.cool.characters.Warrior
+import raptor.cool.characters.*
 import raptor.cool.gear.Gear
 import raptor.cool.gear.getRandomGear
 import raptor.cool.input.*
@@ -17,21 +16,22 @@ class GeneticAlgorithmSimulation : Simulation() {
 
     var generations = 0
     var population = generatePopulation()
-    val size1 = (config[replacement.k]*config[global.b]).toInt()
-    val size2 = config[replacement.k] - size1
 
     val mutator = getMutator(config[mutation.method])
     val reproductor = getReproductor(config[reproduction.method])
     val parentSelector = MixedSelector(config[global.a], getSelector(config[selection.parentMethod1]), getSelector(config[selection.parentMethod2]))
-    val childrenSelector = MixedSelector(config[global.a], getSelector(config[selection.childrenMethod1]), getSelector(config[selection.childrenMethod2]))
-    val replacer = MixedReplacer(config[global.b], getReplacer(config[replacement.method1], size1, parentSelector, childrenSelector, mutator, reproductor), getReplacer(config[replacement.method2], size2, parentSelector, childrenSelector, mutator, reproductor))
+    val childrenSelector = MixedSelector(config[global.b], getSelector(config[selection.childrenMethod1]), getSelector(config[selection.childrenMethod2]))
+    val replacer = getReplacer(config[replacement.method], config[replacement.k], parentSelector, childrenSelector, mutator, reproductor)
 
     override fun simulate(): Boolean {
         startSimulation()
+
         while (!shouldStopSimulation()) {
             var i = 0
             population = replacer.replace(population)
-            population.map { println("${i++} -> -> "+it.getFitness()) }
+            var char = population.sortedBy { it.getFitness() }.last()
+            println("h: ${char.height}")
+            println("fitness: ${char.getFitness()}")
             println("----------------------------------------------")
             updateObservers()
             population.forEach { it.happyBirthdayToYou() }
@@ -50,9 +50,20 @@ fun generatePopulation(): List<Character> {
         for (key in gearMap.keys) {
             characterGearMap.put(key, getRandomGear(key, gearMap))
         }
-        characters.add(Warrior((1.5 + Math.random() * .5), characterGearMap))
+        characters.add(getCharacter(config[multi.heir], characterGearMap))
     }
     return characters
+}
+
+fun getCharacter(name: String, characterGearMap: MutableMap<String, Gear>): Character {
+    val h = (config[mutation.minHeight] + Math.random() * (config[mutation.maxHeight] - config[mutation.minHeight]))
+    when(name) {
+        "warrior" -> return Warrior(h, characterGearMap)
+        "defender" -> return Defender(h, characterGearMap)
+        "archer" -> return Archer(h, characterGearMap)
+        "assasin" -> return Assasin(h, characterGearMap)
+        else -> throw IllegalArgumentException("$name heir not supported")
+    }
 }
 
 fun getReplacer(name: String, k: Int, parentSelector: Selector, childrenSelector: Selector, mutator: Mutator, reproductor: Reproductor): Replacer {

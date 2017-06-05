@@ -8,4 +8,5 @@ object multi : PropertyGroup() {
     val expertise by doubleType
     val resistance by doubleType
     val life by doubleType
+    val heir by stringType
 }

@@ -20,7 +20,6 @@ class OnePointCross : Reproductor {
             }
         }
         val h = if (locus != 6) father.height else mother.height
-
         return mother.getHeir(h, getGearMap(newGear)) //Asumption: both characters are from the same heir.
     }
 }

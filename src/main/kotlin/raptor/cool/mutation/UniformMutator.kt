@@ -15,7 +15,9 @@ class UniformMutator(val p: Double,
 
     private fun mutateCharacter(character: Character): Character {
         var height = character.height
-        if (Math.random() < p) height = (minHeight + Math.random() * (maxHeight - minHeight))
+        if (Math.random() < p) {
+            height = minHeight + Math.random() * (maxHeight - minHeight)
+        }
         val gear = mutableMapOf<String, Gear>()
         for ((key, value) in character.gear) {
             if (Math.random() < p) {

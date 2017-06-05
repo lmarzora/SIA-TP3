@@ -29,6 +29,7 @@ This repo comes with a default configuration file `default.properties`. You can 
 ### Character Multipliers
 | Paramter   |      Value in config file      |  Example |
 |:----------:|:-------------:|:------:|
+| Heir | multi.heir | warrior |
 | Strength | multi.strength | 0.8 |
 | Dexterity | multi.dexterity | 0.9 |
 | Expertise | multi.expertise | 0.9 |

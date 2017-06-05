@@ -13,8 +13,8 @@ abstract class Character(val height: Double, val gear: Map<String, Gear>) {
     val resistance = tanh(0.01 * gear.values.sumByDouble(Gear::resistance) * resistanceMul)
     val life = 100 * tanh(0.01 * gear.values.sumByDouble(Gear::life) * lifeMul)
 
-    val atm = .5 - pow((3 * height - 5), 4.0) + pow((3 * height - 5), 2.0) + height / 2
-    val dem = 2 + pow((3*height-5),4.0) - pow((3*height - 5),2.0) -height/2
+    val atm = 0.5 - pow((3 * height - 5), 4.0) + pow((3 * height - 5), 2.0) + height / 2
+    val dem = 2 + pow((3 * height - 5), 4.0) - pow((3 * height - 5), 2.0) - height / 2
 
     val attack = if ((dexterity + expertise) * strength * atm >= 0) (dexterity + expertise) * strength * atm else 0.0
     val defence = if ((resistance + expertise) * life * dem >= 0) (resistance + expertise) * life * dem else 0.0

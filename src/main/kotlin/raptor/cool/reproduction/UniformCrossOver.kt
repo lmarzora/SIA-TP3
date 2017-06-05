@@ -16,7 +16,7 @@ class UniformCrossOver(var probability: Double = 0.5) : Reproductor {
         val chromosome2 = father.getGearChromosome()
         val L = chromosome1.size
 
-        for (i in (1..L)) newGear.add(if(Math.random() > probability) chromosome2[i] else chromosome1[i])
+        (0..(L-1)).mapTo(newGear) { if(Math.random() > probability) chromosome2[it] else chromosome1[it] }
 
         return mother.getHeir(h, getGearMap(newGear)) //Asumption: both characters are from the same heir.
     }

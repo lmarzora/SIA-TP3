@@ -10,7 +10,7 @@ class AnularCross() : Reproductor {
 
     override fun reproduce(mother: Character, father: Character): Character {
         val rnd = Random()
-        val locus = rnd.nextInt(7)
+        var locus = rnd.nextInt(7)
         val l = rnd.nextInt(6)
         val newGear = mutableListOf<Gear?>()
         val chromosome1 = mother.getGearChromosome()
