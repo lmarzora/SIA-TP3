@@ -8,7 +8,11 @@ data class Gear(val id: Int,
                 val dexterity: Double,
                 val expertise: Double,
                 val resistance: Double,
-                val life: Double)
+                val life: Double) {
+    override fun toString(): String {
+        return id.toString()
+    }
+}
 
 fun parseGearString(line: String): Gear {
     val stats = line.split('\t').map(String::toDouble)

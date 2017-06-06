@@ -14,7 +14,7 @@ import raptor.cool.selection.*
 
 class GeneticAlgorithmSimulation : Simulation() {
 
-    var generations = 0
+    var generations = 1
     var population = generatePopulation()
 
     val mutator = getMutator(config[mutation.method])
@@ -27,12 +27,13 @@ class GeneticAlgorithmSimulation : Simulation() {
         startSimulation()
 
         while (!shouldStopSimulation()) {
-            var i = 0
             population = replacer.replace(population)
             var char = population.sortedBy { it.getFitness() }.last()
             println("h: ${char.height}")
+            println("attack: ${char.attack}")
+            println("defence: ${char.defence}")
             println("fitness: ${char.getFitness()}")
-            println("Char : ${char}")
+            println("Char : $char")
             println("----------------------------------------------")
             updateObservers()
             population.forEach { it.happyBirthdayToYou() }

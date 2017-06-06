@@ -10,6 +10,7 @@ import raptor.cool.input.cut
 import raptor.cool.input.global
 import raptor.cool.input.multi
 import raptor.cool.mutation.Mutator
+import raptor.cool.observer.BestCharacterWriter
 import raptor.cool.replacement.Replacer
 import raptor.cool.reproduction.OnePointCross
 import raptor.cool.reproduction.Reproductor
@@ -17,6 +18,7 @@ import raptor.cool.reproduction.TwoPointsCross
 import raptor.cool.reproduction.UniformCrossOver
 import raptor.cool.selection.*
 import raptor.cool.simulation.GeneticAlgorithmSimulation
+import raptor.cool.simulation.WriterObserver
 import java.io.File
 
 val inputParams: MutableMap<String, Any> = mutableMapOf()
@@ -54,6 +56,7 @@ fun main(args: Array<String>) {
     try { simulation.addObserver(MaxGenerations(config[cut.maxgenerations])) } catch (e: Misconfiguration) {}
     try { simulation.addObserver(OptimumCharacter(config[cut.maxfitness])) } catch (e: Misconfiguration) {}
     try { simulation.addObserver(Structure(config[cut.structure])) } catch (e: Misconfiguration) {}
+    simulation.addObserver(BestCharacterWriter("tomi.csv", 5))
 
     simulation.simulate()
 }
