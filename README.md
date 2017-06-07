@@ -19,15 +19,15 @@ This repo comes with a default configuration file `default.properties`. You can 
 
 ### Global
 
-| Paramter   |      Value in config file      |  Example |
+| Parameter   |      Value in config file      |  Example |
 |:----------:|:-------------:|:------:|
-| Gear Data |  global.data | test.tsv |
-| A |    global.a   |   0.2 |
-| B | global.b |    0.4 |
-| N | global.N |    20 |
+| Gear Data |  global.data | fulldata |
+| A |    global.a   |   0.3 |
+| B | global.b |    0.3 |
+| N | global.N |    1000 |
 
 ### Character Features
-| Paramter   |      Value in config file      |  Example |
+| Parameter   |      Value in config file      |  Example |
 |:----------:|:-------------:|:------:|
 | Heir | multi.heir | warrior |
 | Strength | multi.strength | 0.8 |
@@ -38,26 +38,26 @@ This repo comes with a default configuration file `default.properties`. You can 
 
 ### Cut Conditions
 
-| Paramter   |      Value in config file      |  Example |
+| Parameter   |      Value in config file      |  Example |
 |:----------:|:-------------:|:------:|
-| Max number of generations |  cut.maxgenerations | 200 |
+| Max number of generations |  cut.maxgenerations | 10000 |
 | Percentage of unchanged population between two generations |    cut.structure   |   0.8 |
-| Number of generations to evaluate if fitness doesn't improve (using mean fitness) | cut.contentmean |    10 |
-| Number of generations to evaluate if fitness doesn't improve (using max fitness) | cut.contentmax |    10 |
-| Maximum fitness wanted | cut.maxfitness |    0.9 |
+| Number of generations to evaluate if fitness doesn't improve (using mean fitness) | cut.contentmean |    1500 |
+| Number of generations to evaluate if fitness doesn't improve (using max fitness) | cut.contentmax |    3000 |
+| Maximum fitness wanted | cut.maxfitness |    30 |
 
 **NOTE:** If this parameter is present, the cut condition will be enforced. For example, if the config file has the `cut.contentmax` and `cut.structure` keys, the cut conditions applied are Content Max and Structure.
 
 ### Selection
-| Paramter   |      Value in config file      |  Example |
+| Parameter   |      Value in config file      |  Example |
 |:----------:|:-------------:|:------:|
-| Selection Temperature | selection.temperature |    50 |
-| Selection Children Size | selection.m |    20 |
-| Selection Probability | selection.probability |    0.7 |
+| Selection Temperature | selection.temperature |    0.25 |
+| Selection Children Size | selection.m |    2 |
+| Selection Probability | selection.probability |    0.75 |
 | Parent Selection Method 1 | selection.parentMethod1 |    elite |
-| Parent Selection Method 2 | selection.parentMethod2 |    roulette |
-| Children Selection Method 1 | selection.childrenMethod1 |    ranking |
-| Children Selection Method 2 | selection.childrenMethod2 |    random |
+| Parent Selection Method 2 | selection.parentMethod2 |    boltzmann |
+| Children Selection Method 1 | selection.childrenMethod1 |    elite |
+| Children Selection Method 2 | selection.childrenMethod2 |    roulette |
 
 #### Possible method values
 | Method   |      Key      |
@@ -73,21 +73,20 @@ This repo comes with a default configuration file `default.properties`. You can 
 | Universal Selector | universal |
 
 ### Replacement
-| Paramter   |      Value in config file      |  Example |
+| Parameter   |      Value in config file      |  Example |
 |:----------:|:-------------:|:------:|
-| Replacement Children Size | replacement.k |    20 |
-| Replacement Method 1 | replacement.method1 |    batch |
-| Replacement Method 2 | replacement.method2 |    generational |
+| Replacement Children Size | replacement.k |    500 |
+| Replacement Method | replacement.method |    batch |
 
 #### Possible method values
 | Method   |      Key      |
 |:-------------:|:-------------:|
-| Batch Replacer | batch |
-| Generational Replacer | generational |
-| Iterative Replacer | iterative |
+| Iterative Replacer (Method 1) | iterative |
+| Batch Replacer (Method 2) | batch |
+| Generational Replacer (Method 3) | generational |
 
 ### Reproduction
-| Paramter   |      Value in config file      |  Example |
+| Parameter   |      Value in config file      |  Example |
 |:----------:|:-------------:|:------:|
 | Reproduction Method | reproduction.method |    anular |
 
@@ -100,9 +99,9 @@ This repo comes with a default configuration file `default.properties`. You can 
 | Uniform Cross | uniform |
 
 ### Mutation
-| Paramter   |      Value in config file      |  Example |
+| Parameter   |      Value in config file      |  Example |
 |:----------:|:-------------:|:------:|
-| Mutation Probability | mutation.probability |    0.7 |
+| Mutation Probability | mutation.probability |    0.3 |
 | Mutation Minimum Height | mutation.minHeight |    1.3 |
 | Mutation Maximum Height | mutation.maxHeight |    2.0 |
 | Mutation Method | mutation.method |    uniform |
